@@ -25,3 +25,7 @@ const changeEmailUrl = '${baseApiUrl}user/change/email';
 const answersUrl = '${baseApiUrl}questions/get-test-answer';
 
 const allCategoryUrl = '${baseApiUrl}tests/get-all-category';
+
+const testCategoriesUrl = '${baseApiUrl}questions/get_test_with_category';
+
+const selectedQuestionUrl = '${baseApiUrl}questions/get-selected-question';

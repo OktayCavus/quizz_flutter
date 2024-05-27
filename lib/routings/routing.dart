@@ -15,6 +15,7 @@ import 'package:quizz_flutter/screens/my_profile_page.dart';
 import 'package:quizz_flutter/screens/reset_password_page.dart';
 import 'package:quizz_flutter/screens/select_quiz_page.dart';
 import 'package:quizz_flutter/screens/login_page.dart';
+import 'package:quizz_flutter/screens/selected_question_screen.dart';
 import 'package:quizz_flutter/screens/sign_up.dart';
 
 appRoutes() => [
@@ -61,5 +62,9 @@ appRoutes() => [
       GetPage(
         name: '/myExams',
         page: () => const MyExams(),
+      ),
+      GetPage(
+        name: '/selectedQuestion',
+        page: () => const SelectedQuestionScreen(),
       )
     ];

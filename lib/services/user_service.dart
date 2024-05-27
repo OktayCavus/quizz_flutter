@@ -146,8 +146,6 @@ class UserService {
       final url = categoryId > 0 ? '$answersUrl/$categoryId' : answersUrl;
       final response = await http.get(Uri.parse(url), headers: headers());
 
-      // final response =
-      //     await http.get(Uri.parse(answersUrl), headers: headers());
       return response.body;
     } catch (e) {
       print('hata answers $e');
@@ -161,6 +159,28 @@ class UserService {
       return response.body;
     } catch (e) {
       print('hata answers $e');
+      return '';
+    }
+  }
+
+  Future<String> testCategories() async {
+    try {
+      final response =
+          await http.get(Uri.parse(testCategoriesUrl), headers: headers());
+      return response.body;
+    } catch (e) {
+      print('hata answers $e');
+      return '';
+    }
+  }
+
+  selectedQuestion(int selectedQuestionId) async {
+    try {
+      String url = '$selectedQuestionUrl/$selectedQuestionId';
+      final response = await http.get(Uri.parse(url), headers: headers());
+      return response.body;
+    } catch (e) {
+      print('hata selectedQuestion $e');
       return '';
     }
   }
