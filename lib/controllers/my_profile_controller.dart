@@ -70,7 +70,7 @@ class MyProfileController extends BaseController {
       } else {
         print('kullanıcı detayı getirme başarısız: ${response.message}');
         showCustomDialog('${response.message}',
-            isHaveButton: false, height: Get.height * .15);
+            isHaveButton: false, height: Get.height * .2);
       }
     } catch (e) {
       print('me $e');
@@ -109,14 +109,14 @@ class MyProfileController extends BaseController {
       var response = forgetPasswordModelFromJson(request);
       if (response.status == true) {
         showCustomDialog('Mailinizi kontrol ediniz',
-            isHaveButton: false, height: Get.height * .15);
+            isHaveButton: false, height: Get.height * .2);
         Future.delayed(const Duration(milliseconds: 1700), () {
           Get.toNamed('/checkCode', parameters: {"isMyProfile": "true"});
         });
       } else {
         print('Sıfırlama başarısız: ${response.message}');
         showCustomDialog('${response.message}',
-            isHaveButton: false, height: Get.height * .15);
+            isHaveButton: false, height: Get.height * .2);
       }
     } catch (e) {
       print('forget password request $e');
@@ -133,14 +133,14 @@ class MyProfileController extends BaseController {
       var response = changeEmailCodeModelFromJson(request);
       if (response.status == true) {
         showCustomDialog('Mailinizi kontrol ediniz',
-            isHaveButton: false, height: Get.height * .15);
+            isHaveButton: false, height: Get.height * .2);
         Future.delayed(const Duration(milliseconds: 1700), () {
           Get.toNamed('/checkCode', parameters: {"isMyProfile": "true"});
         });
       } else {
         print('Sıfırlama başarısız: ${response.message}');
         showCustomDialog('${response.message}',
-            isHaveButton: false, height: Get.height * .15);
+            isHaveButton: false, height: Get.height * .2);
       }
     } catch (e) {
       print('sendEmailChangeCodeRequest $e');
@@ -158,11 +158,11 @@ class MyProfileController extends BaseController {
         Get.offNamed('/myProfile');
         await me();
         showCustomDialog('Değiştirme işlemi başarılı',
-            isHaveButton: false, height: Get.height * .15);
+            isHaveButton: false, height: Get.height * .2);
       } else {
         print('email değişme başarısız: ${response.message}');
         showCustomDialog('${response.message}',
-            isHaveButton: false, height: Get.height * .15);
+            isHaveButton: false, height: Get.height * .2);
       }
     } catch (e) {
       print('changeEmail $e');

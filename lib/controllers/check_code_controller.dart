@@ -27,7 +27,7 @@ class CheckCodeController extends BaseController {
           await _myProfileController.changeEmail();
         } else {
           showCustomDialog('${response.message}',
-              isHaveButton: false, height: Get.height * .15);
+              isHaveButton: false, height: Get.height * .2);
         }
       } else {
         var request = await userService.checkCode(handleSubmit());
@@ -40,7 +40,7 @@ class CheckCodeController extends BaseController {
         } else {
           print('Code check başarısız: ${response.message}');
           showCustomDialog('${response.message}',
-              isHaveButton: false, height: Get.height * .15);
+              isHaveButton: false, height: Get.height * .2);
         }
       }
     } catch (e) {

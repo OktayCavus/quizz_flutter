@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-import 'package:quizz_flutter/bindings/login_binding.dart';
 import 'package:quizz_flutter/bindings/main_binding.dart';
 import 'package:quizz_flutter/controllers/main_controller.dart';
 import 'package:quizz_flutter/routings/routing.dart';
@@ -19,15 +18,15 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Quizz',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.transparent),
+          useMaterial3: true,
+          appBarTheme: const AppBarTheme(backgroundColor: Colors.transparent),
+          fontFamily: 'Roboto'),
       initialBinding: MainBinding(),
       getPages: appRoutes(),
       debugShowCheckedModeBanner: false,

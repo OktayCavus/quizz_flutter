@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 imagePath(String name) {
-  return 'assets/images/$name.png';
+  return 'assets/img/$name.png';
 }
 
 class CustomColors {

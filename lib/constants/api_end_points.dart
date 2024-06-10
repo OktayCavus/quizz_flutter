@@ -24,8 +24,19 @@ const changeEmailUrl = '${baseApiUrl}user/change/email';
 
 const answersUrl = '${baseApiUrl}questions/get-test-answer';
 
-const allCategoryUrl = '${baseApiUrl}tests/get-all-category';
-
 const testCategoriesUrl = '${baseApiUrl}questions/get_test_with_category';
 
 const selectedQuestionUrl = '${baseApiUrl}questions/get-selected-question';
+
+const listTestUrl = '${baseApiUrl}questions/get-question-with-test';
+
+const allCategoryUrl = '${baseApiUrl}tests/get-all-category';
+
+const getCategoryTestUrl = '${baseApiUrl}tests/get-category';
+
+const submitAnswersUrl = '${baseApiUrl}questions/submit-answer';
+
+const getUserTestsUrl = '${baseApiUrl}tests/show-user-test/';
+
+const getTestCategoryAnswerUrl =
+    '${baseApiUrl}questions/get-test-category-answer/';

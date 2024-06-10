@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quizz_flutter/controllers/my_exams_controller.dart';
+import 'package:quizz_flutter/controllers/test_screen_controller.dart';
 
-class SelectedQuestionScreen extends GetView<MyExamsController> {
+class SelectedQuestionScreen extends GetView<TestScreenController> {
   const SelectedQuestionScreen({super.key});
 
   @override
@@ -41,13 +41,19 @@ class SelectedQuestionScreen extends GetView<MyExamsController> {
                     itemBuilder: (context, index) {
                       final option = question.options?[index];
                       Color cardColor = Colors.grey[200]!;
+
+                      // ! seçilen seçenekle mevcut seçenek karşılaştırılır
                       if (option?.id == selectedOptionId) {
                         if (option?.isCorrect == 1) {
                           cardColor = Colors.green.withOpacity(0.7);
-                        } else if (option?.isCorrect == 0) {
+                        } else {
                           cardColor = Colors.red.withOpacity(0.7);
                         }
+                      } else if (option?.isCorrect == 1) {
+                        // ! yanlış olsa da oğru cevaplar yeşil renkle işaretlenir
+                        cardColor = Colors.green.withOpacity(0.7);
                       }
+
                       return Padding(
                         padding: const EdgeInsets.symmetric(vertical: 8),
                         child: Card(

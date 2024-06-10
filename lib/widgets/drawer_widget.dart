@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:quizz_flutter/constants/color_images_constant.dart';
 import 'package:quizz_flutter/controllers/select_quiz_controller.dart';
 
 class MyDrawer extends StatefulWidget {
@@ -19,7 +20,7 @@ class _MyDrawerState extends State<MyDrawer> {
       child: ListView(
         children: <Widget>[
           DrawerHeader(
-            child: Container(),
+            child: Image.asset(imagePath('quizz')),
           ),
           ListTile(
             leading: const Icon(Icons.person),

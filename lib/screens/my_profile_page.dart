@@ -36,6 +36,7 @@ class MyProfilePage extends GetView<MyProfileController> {
                 } else {
                   if (controller.isChangingEmail.value) {
                     await controller.sendEmailChangeCodeRequest();
+                    controller.isChangingEmail.value = false;
                   } else {
                     await controller.profileUpdateRequest();
                   }

@@ -17,7 +17,7 @@ class ResetPasswordController extends BaseController {
 
       if (response.status == true) {
         showCustomDialog('Sıfırlama başarılı',
-            isHaveButton: false, height: Get.height * 0.15);
+            isHaveButton: false, height: Get.height * 0.2);
         Future.delayed(const Duration(milliseconds: 1800), () {
           // ! burda uygulama içinden mi ana ekrandan mı kontrol yap
           if (isMyProfile == 'true') {
@@ -29,7 +29,7 @@ class ResetPasswordController extends BaseController {
       } else {
         print('Sıfırlama başarısız: ${response.message}');
         showCustomDialog('${response.message}',
-            isHaveButton: false, height: Get.height * .15);
+            isHaveButton: false, height: Get.height * .2);
       }
     } catch (e) {
       print('hataa reset password $e');

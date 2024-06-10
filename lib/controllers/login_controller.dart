@@ -46,24 +46,23 @@ class LoginController extends BaseController {
 
         if (response.status == true) {
           if (isChecked.value) {
-            storageBoxFunction('email', 'write', value: eMailEC.text);
-            storageBoxFunction('password', 'write', value: passwordEC.text);
+            storageBox.write('email', eMailEC.text);
+            storageBox.write('password', passwordEC.text);
           } else {
             storageBox.remove('email');
             storageBox.remove('password');
           }
-          storageBoxFunction('isChecked', 'write', value: isChecked.value);
-          storageBoxFunction('accessToken', 'write',
-              value: response.data?.token);
+
+          storageBox.write('isChecked', isChecked.value);
+          storageBox.write('accessToken', response.data?.token);
+          storageBox.write('name', response.data?.user?.name);
 
           responseValue?.value = response;
-          Get.offAllNamed('/selectQuiz', arguments: {
-            'name': response.data?.user?.name,
-          });
+          Get.offAllNamed('/selectQuiz');
         } else {
           print('Giriş başarısız: ${response.message}');
           showCustomDialog('${response.message}',
-              isHaveButton: false, height: Get.height * .15);
+              isHaveButton: false, height: Get.height * .2);
         }
       }
     } catch (e) {

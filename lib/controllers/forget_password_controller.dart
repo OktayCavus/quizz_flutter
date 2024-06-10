@@ -16,14 +16,14 @@ class ForgetPasswordController extends BaseController {
       var response = forgetPasswordModelFromJson(request);
       if (response.status == true) {
         showCustomDialog('Mailinizi kontrol ediniz',
-            isHaveButton: false, height: Get.height * .15);
+            isHaveButton: false, height: Get.height * .2);
         Future.delayed(const Duration(milliseconds: 1700), () {
           Get.toNamed('/checkCode', parameters: {"isForget": "true"});
         });
       } else {
         print('Sıfırlama başarısız: ${response.message}');
         showCustomDialog('${response.message}',
-            isHaveButton: false, height: Get.height * .15);
+            isHaveButton: false, height: Get.height * .2);
       }
     } catch (e) {
       print('forget password request $e');

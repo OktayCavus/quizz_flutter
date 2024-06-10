@@ -55,34 +55,43 @@ class CustomDialogBox extends StatelessWidget {
             ),
             context.heightBox(.024),
             // iconData != null
-            //     ? Lottie.asset(checkLottie, height: 70, width: 70)
-            //     : Text(
-            //         descriptions,
-            //         style: CustomTextStyle.dialogDescText(color: darkGrey),
-            //         textAlign: TextAlign.center,
-            //       ),
+            // ? Lottie.asset(checkLottie, height: 70, width: 70)
+            // :
+            Text(
+              descriptions,
+              style: CustomTextStyle.dialogDescText(color: Colors.grey[800]),
+              textAlign: TextAlign.center,
+            ),
             context.heightBox(.055),
             haveButton
                 ? Row(
                     children: [
                       Expanded(
-                          child: Padding(
-                        padding: const EdgeInsets.only(left: 8, right: 4),
-                        child: CustomButton(
-                            onTap: () => onTap2,
-                            buttonText: 'Cancel',
+                        child: Padding(
+                          padding: const EdgeInsets.only(left: 8, right: 4),
+                          child: CustomButton(
+                            onTap: () {
+                              if (onTap2 != null) onTap2!();
+                            },
+                            buttonText: buttonText2 ?? 'İptal',
                             buttonColor: CustomColors.buttonColor,
-                            textColor: CustomColors.buttonTextColor),
-                      )),
+                            textColor: CustomColors.buttonTextColor,
+                          ),
+                        ),
+                      ),
                       Expanded(
-                          child: Padding(
-                        padding: const EdgeInsets.only(right: 8, left: 4),
-                        child: CustomButton(
-                            onTap: () => onTap1,
-                            buttonText: 'Onayla',
+                        child: Padding(
+                          padding: const EdgeInsets.only(right: 8, left: 4),
+                          child: CustomButton(
+                            onTap: () {
+                              if (onTap1 != null) onTap1!();
+                            },
+                            buttonText: buttonText1 ?? confirmButtonText,
                             buttonColor: CustomColors.buttonColor,
-                            textColor: CustomColors.buttonTextColor),
-                      )),
+                            textColor: CustomColors.buttonTextColor,
+                          ),
+                        ),
+                      ),
                     ],
                   )
                 : const SizedBox.shrink(),

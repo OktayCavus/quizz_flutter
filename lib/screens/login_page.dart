@@ -31,7 +31,10 @@ class LoginPage extends GetView<LoginController> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              GapEnum.M.heightBox,
+                              SizedBox(
+                                  height: Get.height * .2,
+                                  child: Center(
+                                      child: Image.asset(imagePath('quizz')))),
                               GapEnum.S.heightBox,
                               customSizedBox(),
                               emailTextField(),

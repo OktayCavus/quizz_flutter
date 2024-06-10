@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:quizz_flutter/controllers/my_exams_controller.dart';
+import 'package:quizz_flutter/controllers/test_screen_controller.dart';
 
-class MyExams extends GetView<MyExamsController> {
+class MyExams extends GetView<TestScreenController> {
   const MyExams({super.key});
 
   @override
@@ -10,19 +10,20 @@ class MyExams extends GetView<MyExamsController> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Sınavlarım'),
+        centerTitle: true,
       ),
       body: Obx(
         () {
           return controller.isLoading.value
-              ? controller.loading(context: context)
-              : controller.answers.isEmpty
+              ? const Center(child: CircularProgressIndicator())
+              : controller.testAnswers.isEmpty
                   ? const Center(
                       child: Text('Bu Kategori\'de görüntülenecek cevap yok'),
                     )
                   : ListView.builder(
-                      itemCount: controller.answers.length,
+                      itemCount: controller.testAnswers.length,
                       itemBuilder: (context, index) {
-                        final answer = controller.answers[index];
+                        final answer = controller.testAnswers[index];
                         return Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16.0, vertical: 8.0),
@@ -47,42 +48,54 @@ class MyExams extends GetView<MyExamsController> {
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceBetween,
                                   children: [
-                                    Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.start,
-                                      children: [
-                                        Text(
-                                          'Soru: ${answer.questionText.toString()}',
-                                          style: const TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 16.0,
+                                    Expanded(
+                                      child: Column(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                            'Soru: ${answer.questionText.toString()}',
+                                            style: const TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 16.0,
+                                            ),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
                                           ),
-                                        ),
-                                        const SizedBox(height: 8.0),
-                                        Text(
-                                          'Verilen Cevap: ${answer.optionText}',
-                                          style:
-                                              const TextStyle(fontSize: 14.0),
-                                        ),
-                                        const SizedBox(height: 4.0),
-                                        Text(
-                                          'Kategori Türü: ${answer.categoryName}',
-                                          style:
-                                              const TextStyle(fontSize: 14.0),
-                                        ),
-                                        const SizedBox(height: 4.0),
-                                        Text(
-                                          'Soru Numarası: ${answer.questionId}',
-                                          style:
-                                              const TextStyle(fontSize: 14.0),
-                                        ),
-                                        const SizedBox(height: 4.0),
-                                        Text(
-                                          'Sonuç: ${answer.isCorrect == 1 ? "Doğru" : "Yanlış"}',
-                                          style:
-                                              const TextStyle(fontSize: 14.0),
-                                        ),
-                                      ],
+                                          const SizedBox(height: 8.0),
+                                          Text(
+                                            'Verilen Cevap: ${answer.optionText}',
+                                            style:
+                                                const TextStyle(fontSize: 14.0),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                          ),
+                                          const SizedBox(height: 4.0),
+                                          Text(
+                                            'Kategori Türü: ${answer.categoryName}',
+                                            style:
+                                                const TextStyle(fontSize: 14.0),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                          ),
+                                          const SizedBox(height: 4.0),
+                                          Text(
+                                            'Soru Numarası: ${answer.questionId}',
+                                            style:
+                                                const TextStyle(fontSize: 14.0),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                          ),
+                                          const SizedBox(height: 4.0),
+                                          Text(
+                                            'Sonuç: ${answer.isCorrect == 1 ? "Doğru" : "Yanlış"}',
+                                            style:
+                                                const TextStyle(fontSize: 14.0),
+                                            overflow: TextOverflow.ellipsis,
+                                            maxLines: 1,
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                     const Icon(
                                       Icons.arrow_forward_ios,

@@ -3,16 +3,17 @@ import 'package:get/get.dart';
 import 'package:quizz_flutter/widgets/custom_text.dart';
 
 class CustomAnswerButton extends StatelessWidget {
-  const CustomAnswerButton({
-    super.key,
-    required this.text,
-    this.topLeft = 20,
-    this.topRight = 20,
-    this.bottomLeft = 20,
-    this.bottomRight = 20,
-    required this.onTap,
-    required this.icon,
-  });
+  const CustomAnswerButton(
+      {super.key,
+      required this.text,
+      this.topLeft = 20,
+      this.topRight = 20,
+      this.bottomLeft = 20,
+      this.bottomRight = 20,
+      required this.onTap,
+      this.icon,
+      this.height,
+      this.width});
 
   final String text;
   final double topLeft;
@@ -20,7 +21,9 @@ class CustomAnswerButton extends StatelessWidget {
   final double bottomLeft;
   final double bottomRight;
   final VoidCallback onTap;
-  final IconData icon;
+  final IconData? icon;
+  final double? height;
+  final double? width;
 
   @override
   Widget build(BuildContext context) {
@@ -31,8 +34,8 @@ class CustomAnswerButton extends StatelessWidget {
         child: Stack(
           children: [
             Container(
-              height: Get.height * 0.15,
-              width: Get.width * 0.38,
+              height: height ?? Get.height * 0.15,
+              width: width ?? Get.width * 0.38,
               decoration: BoxDecoration(
                 color: Colors.grey.shade300,
                 borderRadius: BorderRadius.only(

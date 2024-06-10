@@ -61,12 +61,4 @@ class BaseController extends GetxController {
       ),
     );
   }
-
-  storageBoxFunction(String key, String type, {dynamic value}) {
-    if (type == 'write') {
-      storageBox.write(key, value);
-    } else {
-      storageBox.read(key);
-    }
-  }
 }

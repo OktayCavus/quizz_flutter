@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:quizz_flutter/controllers/my_exams_controller.dart';
+import 'package:quizz_flutter/widgets/custom_card_widget.dart';
 
 class MyExamsCategoryPage extends GetView<MyExamsController> {
   const MyExamsCategoryPage({super.key});
@@ -11,67 +12,51 @@ class MyExamsCategoryPage extends GetView<MyExamsController> {
       appBar: AppBar(
         title: const Text('Kategoriler'),
         centerTitle: true,
+        leading: IconButton(
+            onPressed: () {
+              Get.offAllNamed('/selectQuiz');
+            },
+            icon: const Icon(Icons.arrow_back)),
       ),
       body: SingleChildScrollView(
-        child: Obx(() {
-          return controller.isLoading.value
-              ? controller.loading(context: context)
-              : ListView.builder(
-                  shrinkWrap: true,
-                  physics: const NeverScrollableScrollPhysics(),
-                  itemCount: controller.testCategories.length,
-                  itemBuilder: (context, index) {
-                    final testCategory = controller.testCategories[index];
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 16.0, vertical: 8.0),
-                      child: Card(
-                        color: Colors.grey[200],
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                        elevation: 5.0,
-                        child: InkWell(
-                          borderRadius: BorderRadius.circular(15.0),
-                          onTap: () {
-                            controller.clickedCategory.value =
-                                testCategory.categoryId!;
-                            controller.getAnswers();
-                            Get.toNamed('/myExams');
-                          },
-                          child: Padding(
-                            padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              children: [
-                                const Icon(
-                                  Icons.category,
-                                  color: Colors.black,
-                                  size: 30.0,
-                                ),
-                                const SizedBox(width: 16.0),
-                                Expanded(
-                                  child: Text(
-                                    testCategory.categoryName.toString(),
-                                    style: const TextStyle(
-                                      fontSize: 18.0,
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ),
-                                const Icon(
-                                  Icons.arrow_forward_ios,
-                                  size: 16.0,
-                                  color: Colors.black,
-                                ),
-                              ],
-                            ),
+        child: Obx(
+          () {
+            return controller.isLoading.value
+                ? controller.loading(context: context)
+                : controller.testCategories.isEmpty
+                    ? const Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Center(
+                            child: Text(
+                                'Sınava girdiğiniz bir kategori bulunmamaktadır'),
                           ),
-                        ),
-                      ),
-                    );
-                  },
-                );
-        }),
+                        ],
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemCount: controller.testCategories.length,
+                        itemBuilder: (context, index) {
+                          final testCategory = controller.testCategories[index];
+                          return CustomCard(
+                            name: testCategory.categoryName.toString(),
+                            icon: Icons.category,
+                            onTap: () async {
+                              controller.clickedCategory.value =
+                                  testCategory.categoryId!;
+
+                              // await controller.getAnswers();
+                              // Get.toNamed('/myExams');
+                              Get.toNamed('/userTests', arguments: {
+                                "category_id": testCategory.categoryId
+                              });
+                            },
+                          );
+                        },
+                      );
+          },
+        ),
       ),
     );
   }
